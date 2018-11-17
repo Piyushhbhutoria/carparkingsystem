@@ -92,8 +92,8 @@ include('sessioncheck.php');
             </th>
           </tr>
               <?php 
-              $qry = mysql_query("SELECT * FROM lot ");
-              while($row = mysql_fetch_array($qry))
+              $qry = mysqli_query($con,"SELECT * FROM lot ");
+              while($row = mysqli_fetch_array($qry))
               {
                 ?>
             <tr>
@@ -133,8 +133,8 @@ include('sessioncheck.php');
             </th>
           </tr>
           <?php 
-              $qry1 = mysql_query("SELECT * FROM logtable ");
-              while($row1 = mysql_fetch_array($qry1))
+              $qry1 = mysqli_query($con,"SELECT * FROM logtable ");
+              while($row1 = mysqli_fetch_array($qry1))
               {
                 ?>
           <tr>

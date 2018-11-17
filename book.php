@@ -73,11 +73,11 @@ include('sessioncheck.php');
       <div class="wrap-login100 p-l-50 p-r-50 p-t-72 p-b-50">
         <?php
         $uid = $_SESSION['log']['useruid'];
-        $qry = mysql_query("SELECT * FROM logtable WHERE useruid='$uid' ORDER BY id DESC");
-        $qry1 = mysql_num_rows($qry);
+        $qry = mysqli_query($con,"SELECT * FROM logtable WHERE useruid='$uid' ORDER BY id DESC");
+        $qry1 = mysqli_num_rows($qry);
         if($qry1)
         {
-        $row = mysql_fetch_array($qry);
+        $row = mysqli_fetch_array($qry);
         if($row['payment']=='Paid')
         {
           ?>
@@ -96,8 +96,8 @@ include('sessioncheck.php');
             <span class="label-input100">Parking Lot</span>
             <select class="input100" name="lot" required="required">
               <?php
-              $qry = mysql_query("SELECT * FROM lot WHERE status='Free' or status='Leaving' ");
-              while ($row = mysql_fetch_array($qry)) {
+              $qry = mysqli_query($con,"SELECT * FROM lot WHERE status='Free' or status='Leaving' ");
+              while ($row = mysqli_fetch_array($qry)) {
                 ?>
                 <option value="<?php echo $row['lotname']; ?>"><?php echo $row['lotname']; ?></option>
                 <?php
@@ -164,8 +164,8 @@ include('sessioncheck.php');
             <span class="label-input100">Parking Lot</span>
             <select class="input100" name="lot" required="required">
               <?php
-              $qry = mysql_query("SELECT * FROM lot WHERE status='Free' or status='Leaving' ");
-              while ($row = mysql_fetch_array($qry)) {
+              $qry = mysqli_query($con,"SELECT * FROM lot WHERE status='Free' or status='Leaving' ");
+              while ($row = mysqli_fetch_array($qry)) {
                 ?>
                 <option value="<?php echo $row['lotname']; ?>"><?php echo $row['lotname']; ?></option>
                 <?php

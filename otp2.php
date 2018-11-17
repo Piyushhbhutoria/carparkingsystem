@@ -6,16 +6,16 @@ $car = $_POST['car'];
 $otp2 = $_POST['otp2'];
 $date = $_POST['datetimelocal'];
 
-$qry = mysql_query("SELECT * FROM logtable WHERE otp2='$otp2' ");
-$qry1 = mysql_num_rows($qry);
+$qry = mysqli_query($con,"SELECT * FROM logtable WHERE otp2='$otp2' ");
+$qry1 = mysqli_num_rows($qry);
 if($qry1)
 {
-	$row = mysql_fetch_array($qry);
+	$row = mysqli_fetch_array($qry);
 	if($row['carno'] == $car)
 	{
-		$sql = mysql_query("UPDATE logtable SET totime='$date', status='Left' WHERE otp2='$otp2' ");
+		$sql = mysqli_query($con,"UPDATE logtable SET totime='$date', status='Left' WHERE otp2='$otp2' ");
 		$lot = $row['lotname'];
-		$sql5 = mysql_query("UPDATE lot SET status='Leaving' WHERE lotname='$lot' ");
+		$sql5 = mysqli_query($con,"UPDATE lot SET status='Leaving' WHERE lotname='$lot' ");
 		?>
 		<script type="text/javascript">
 			alert ("Proceed to Pay.");

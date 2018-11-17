@@ -6,16 +6,16 @@ $car = $_POST['car'];
 $otp1 = $_POST['otp1'];
 $date = $_POST['datetimelocal'];
 
-$qry = mysql_query("SELECT * FROM logtable WHERE otp1='$otp1' ");
-$qry1 = mysql_num_rows($qry);
+$qry = mysqli_query($con,"SELECT * FROM logtable WHERE otp1='$otp1' ");
+$qry1 = mysqli_num_rows($qry);
 if($qry1)
 {
-	$row = mysql_fetch_array($qry);
+	$row = mysqli_fetch_array($qry);
 	if($row['carno'] == $car)
 	{
-		$sql = mysql_query("UPDATE logtable SET fromtime='$date', status='Park' WHERE otp1='$otp1' ");
+		$sql = mysqli_query($con,"UPDATE logtable SET fromtime='$date', status='Park' WHERE otp1='$otp1' ");
 		$lot = $row['lotname'];
-		$sql5 = mysql_query("UPDATE lot SET status='Booked' WHERE lotname='$lot' ");
+		$sql5 = mysqli_query($con,"UPDATE lot SET status='Booked' WHERE lotname='$lot' ");
 		?>
 		<script type="text/javascript">
 			alert ("Park your Car.");

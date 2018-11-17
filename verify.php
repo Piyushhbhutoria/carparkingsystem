@@ -62,7 +62,6 @@ include('sessioncheck.php');
   ============================-->
   <?php include('header.php'); ?>
   <!-- #header -->
-
   
   <!--==========================
   Services Section
@@ -72,8 +71,8 @@ include('sessioncheck.php');
       <div class="wrap-login100 p-l-110 p-r-110 p-t-62 p-b-33">
         <?php
           $uid = $_SESSION['log']['useruid'];
-          $qry = mysql_query("SELECT * FROM logtable WHERE useruid='$uid' ORDER BY id DESC");
-          $row = mysql_fetch_array($qry);
+          $qry = mysqli_query($con,"SELECT * FROM logtable WHERE useruid='$uid' ORDER BY id DESC");
+          $row = mysqli_fetch_array($qry);
           if($row['status']!='Park')
           {
           ?>
@@ -152,11 +151,9 @@ include('sessioncheck.php');
   Subscrbe Section
   ============================-->
 
-
   <!--==========================
   Team Section
   ============================-->
- 
 
   <!--==========================
   Contact Section

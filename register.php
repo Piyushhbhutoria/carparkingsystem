@@ -7,8 +7,8 @@ $aadhar = htmlspecialchars($_POST['aadhar'], ENT_QUOTES, 'UTF-8');
 $contact = htmlspecialchars($_POST['contact'], ENT_QUOTES, 'UTF-8');
 $passwrd = base64_encode($_POST['pass']);
 $repasswrd = base64_encode($_POST['repass']);
-$qry = mysql_query("SELECT * FROM user WHERE email='$email' ");
-$qry1 = mysql_num_rows($qry);
+$qry = mysqli_query($con,"SELECT * FROM user WHERE email='$email' ");
+$qry1 = mysqli_num_rows($qry);
 	$file = 'count.txt';
 	//get the number from the file
 	$uniq = file_get_contents($file);
@@ -18,10 +18,10 @@ $qry1 = mysql_num_rows($qry);
 	file_put_contents($file, $uid);
 if($qry1==0 and $passwrd==$repasswrd)
 {
-	$sql = mysql_query("INSERT INTO user (name, email, password, contact, aadhar, address, useruid) VALUES ('$name', '$email', '$passwrd', '$contact' , '$aadhar', '$address', '$uid') ")or die(mysql_error());
-	$qry = mysql_query("SELECT * FROM user WHERE email='$email' and password='$passwrd' ")or die(mysql_error());
+	$sql = mysqli_query($con,"INSERT INTO user (name, email, password, contact, aadhar, address, useruid) VALUES ('$name', '$email', '$passwrd', '$contact' , '$aadhar', '$address', '$uid') ")or die(mysqli_error($con));
+	$qry = mysqli_query($con,"SELECT * FROM user WHERE email='$email' and password='$passwrd' ")or die(mysqli_error($con));
 	session_start();
-	$row = mysql_fetch_array($qry);
+	$row = mysqli_fetch_array($qry);
 	$_SESSION['log']=$row;
 	$keys="user";
 	$_SESSION['log1']=$keys;
